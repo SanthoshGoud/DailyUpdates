@@ -1,0 +1,8 @@
+{
+    "ISSUER":"https://dev-74099557.okta.com/oauth2/default",
+    "CLIENT_ID":"0oa8j8q8coZXqZw8M5d7",
+    "CLIENT_SECRET":"kw0ZY5DD3VCmxpdfWFbHmrTAbVZYmdwBD1RKrNFA",
+    "redirect_uris":"http://localhost:3000/auth/callback",
+    "post_logout_redirect_uris": "http://localhost:3000/logout/callback",
+    "token_endpoint_auth_method": "client_secret_post"
+}

@@ -1,3 +1,4 @@
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,6 +7,7 @@ var logger = require('morgan');
 const expressSesssion = require('express-session');
 const passport = require('passport');
 const { Issuer, Strategy } = require('openid-client');
+const config=require("./config/app.spec.json")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,14 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-Issuer.discover('https://nodejs-sample.criipto.id')
+Issuer.discover(config.ISSUER)
   .then(criiptoIssuer => {
     var client = new criiptoIssuer.Client({
-      client_id: 'urn:criipto:nodejs:demo:1010',
-      client_secret: 'j9wYVyD3zXZPMo3LTq/xSU/sMu9/shiFKpTHKfqAutM=',
-      redirect_uris: [ 'http://localhost:3000/auth/callback' ],
-      post_logout_redirect_uris: [ 'http://localhost:3000/logout/callback' ],
-      token_endpoint_auth_method: 'client_secret_post'
+      client_id: config.CLIENT_ID,
+      client_secret: config.CLIENT_SECRET,
+      redirect_uris: [ config.redirect_uris ],
+      post_logout_redirect_uris: [ config.post_logout_redirect_uris ],
+      token_endpoint_auth_method: config.token_endpoint_auth_method
     });
 
     app.use(
