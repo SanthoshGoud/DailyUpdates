@@ -32,7 +32,7 @@ Issuer.discover(config.ISSUER)
       client_id: config.CLIENT_ID,
       client_secret: config.CLIENT_SECRET,
       redirect_uris: [ config.redirect_uris ],
-      post_logout_redirect_uris: [ config.post_logout_redirect_uris ],
+      post_logout_redirect_uri: [ config.post_logout_redirect_uris ],
       token_endpoint_auth_method: config.token_endpoint_auth_method
     });
 
