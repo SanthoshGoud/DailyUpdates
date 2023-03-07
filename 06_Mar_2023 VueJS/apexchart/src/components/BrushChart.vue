@@ -1,6 +1,6 @@
-<template>
+ <template>
   <div>
-    <vue-apexcharts
+    <VueApexCharts
       :options="chartOptions"
       :series="chartSeries"
       :type="chartType"
@@ -11,7 +11,6 @@
   
   <script>
   import VueApexCharts from 'vue-apexcharts';
-  
   export default {
     name: 'BrushChart',
     components: {
@@ -73,7 +72,6 @@
       }
     }
   }
-
   </script>
 
   

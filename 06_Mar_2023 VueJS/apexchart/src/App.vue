@@ -18,10 +18,11 @@ export default {
     }
   },
   created() {
-    fetch('/path/to/chart-data.json')
+    fetch('C:/Users/ssaara/Downloads/data.josn')
       .then(response => response.json())
       .then(data => {
         this.chartData = data;
+        console.log(data);
       });
   }
 }
