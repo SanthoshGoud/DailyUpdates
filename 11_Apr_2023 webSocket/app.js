@@ -10,7 +10,7 @@ let server = http.createServer(app);
 
 var io=socketIO(server);
  
-// make connection with user from server side
+// make connection with user from server side 
 
 io.on('connection', (socket)=>{
 
