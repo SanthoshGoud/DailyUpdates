@@ -1,20 +1,37 @@
-const express=require('express');
+const express = require('express');
 require("dotenv").config();
-const app=express();
-const books=require('./books.json')
+var bodyParser = require('body-parser');
 
-app.get('/',(req,res)=>{
+const app = express();
+app.use(bodyParser.json());
+const books = require('./books.json')
+
+app.get('/', (req, res) => {
     console.log(books);
     res.json(books);
 })
-app.get('/:id',(req,res)=>{
+app.get('/:id', (req, res) => {
     const { id } = req.params;
-    let filterbooks=Object.values(books);
-    const filteredBooks = filterbooks.filter(book => book.books.some(author => author.id === id));
-    console.log(filterbooks);
-    res.json(filterbooks.filter((ele) => ele.id === parseInt(id)));
+    let filterbooks = Object.values(books);
+    const filteredData = filterbooks.map(nestedArray => {
+        return nestedArray.filter(obj => obj.id == id);
+    });
+    res.json(filteredData);
 })
 
-app.listen(process.env.PORT,()=>{
-    console.log("Running on Port ",process.env.PORT);
+app.post('/', (req, res) => {
+
+    const body = req.body;
+  
+    console.log(req.body);
+    let filterbooks = Object.values(books);
+
+    filterbooks.push(body);
+   
+    res.json({message: 'The book has been added'});
+  
+  });
+
+app.listen(process.env.PORT, () => {
+    console.log("Running on Port ", process.env.PORT);
 })
